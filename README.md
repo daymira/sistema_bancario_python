@@ -21,5 +21,5 @@ Otimizando o Sistema Bancário com Funções Python
 ### Objetivo
 Criar funções para as operações utilizadas no desafio anterior e melhorar o código criando novas funções para criação de usuário e contas.
 
-[código](conta_corrente-funcoes.py)
+[código](conta_corrente_funcoes.py)
 
