@@ -25,7 +25,7 @@ def criar_usuario(usuarios):
         return
         
     nome = input("Informe seu nome completo: ")
-    data_nascimento = input("Informe a datade nascimento(dd/mm/aaaa): ")
+    data_nascimento = input("Informe a data de nascimento(dd/mm/aaaa): ")
     endereco = input("Informe seu endereço (logradouro, número - bairro - cidade/sigla estado: ")
     
     usuarios.append({"nome": nome, "cpf": cpf, "data_nascimento": data_nascimento, "endereco": endereco})
