@@ -298,25 +298,27 @@ def menu():
 def main():
     clientes = []
     contas = []
-    
+   
     while True:
         opcao = menu()
-        if opcao == "1":
-            criar_cliente(clientes)
-        elif opcao == "2":
-            numero_conta = len(contas) + 1
-            criar_conta(numero_conta, clientes, contas)
-        elif opcao == "3":
-            listar_contas(contas)
-        elif opcao == "4":
-            deposito(clientes)
-        elif opcao == "5":
-            sacar(clientes)
-        elif opcao == "6":
-            exibir_extrato(clientes)
-        elif opcao == "7":
-            break
-        else:
-            print("Opção inválida. Tente novamente.")
+        match opcao:
+            case "1":
+                criar_cliente(clientes)
+            case "2":
+                numero_conta = len(contas) + 1
+                criar_conta(numero_conta, clientes, contas)
+            case "3":
+                listar_contas(contas)
+            case "4":
+                deposito(clientes)
+            case "5":
+                sacar(clientes)
+            case "6":
+                exibir_extrato(clientes)
+            case "7":
+                print("Saindo....")
+                return
+            case _:
+                print("Opção inválida. Tente novamente.")
             
 main()
