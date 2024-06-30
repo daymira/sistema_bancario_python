@@ -38,6 +38,7 @@ Modelando o Sistema Bancário em POO com Python
 ```mermaid
 classDiagram
     Conta <|-- ContaCorrente
+    Conta <| -- ContaPoupanca
     Conta "*" *-- "1" Cliente
     Conta "*" *-- "1" Historico
     Historico "1" o-- "*" Transacao
@@ -54,6 +55,9 @@ classDiagram
         +nova_conta(cliente: Cliente, numero: int)Conta
         +sacar(valor: float) bool
         +depositar(valor: float) bool
+    }
+    class ContaPoupanca{
+        
     }
     class ContaCorrente {
         -limite: float 

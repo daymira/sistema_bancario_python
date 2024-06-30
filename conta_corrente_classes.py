@@ -2,7 +2,7 @@ from abc import ABC, ABCMeta, abstractmethod
 from datetime import datetime
 
 #iterar sobre todas contas do banco e retornar informações básicas como nome, conta, saldo atual
-class contaIterador():
+class ContaIterador():
     def __init__(self, contas):
         self.contas = contas
         self._start = 0
@@ -72,7 +72,6 @@ class Conta:
         if valor > 0:
             self._saldo += valor
             print("Depósito realizado com sucesso.")
-            # self.historico.adicionar_transacao(Deposito(valor))
         else:
             print("Valor inválido.")
             return False
@@ -116,6 +115,11 @@ class Cliente():
         self.contas = []
 
     def realizar_transacao(self, conta, transacao):
+       
+        if len(conta.historico.transacoes_do_dia()) >= 10:
+            print("Limite de transações diárias excedido.")
+            return
+            
         transacao.registrar(conta)
         
     def adicionar_conta(self, conta):
@@ -149,8 +153,19 @@ class Historico():
             if tipo_transacao is None or transacao['tipo'].lower() == tipo_transacao.lower():
                 yield transacao
                 
+                
+    def transacoes_do_dia(self):
+        data_atual = datetime.now().date()
+        transacoes_do_dia = []
         
-    
+        for transacao in self._transacoes:
+            data_transacao = datetime.strptime(transacao['data'], "%d/%m/%Y %H:%M:%S").date()
+            if data_atual == data_transacao:
+                transacoes_do_dia.append(transacao)
+        return transacoes_do_dia   
+ 
+                
+        
 class Transacao(ABC):
     @property
     def valor(self):
