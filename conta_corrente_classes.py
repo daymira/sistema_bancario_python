@@ -2,7 +2,7 @@ from abc import ABC, ABCMeta, abstractmethod
 from datetime import datetime
 
 #iterar sobre todas contas do banco e retornar informações básicas como nome, conta, saldo atual
-class ContaIterador():
+class ContaIterador:
     def __init__(self, contas):
         self.contas = contas
         self._start = 0
@@ -12,11 +12,11 @@ class ContaIterador():
     
     def __next__(self):
         try:
-            conta = self.conta[self._start]
+            conta = self.contas[self._start]
             return f"""
             Agência:\t{conta.agencia}
             Número:\t{conta.numero}
-            Titular:\t{conta.titular}
+            Titular:\t{conta.cliente.nome}
             Saldo:\tR$ {conta.saldo}
         """
         except IndexError:
@@ -265,7 +265,7 @@ def criar_conta(numero_conta, clientes, contas):
     print("\nConta criada com sucesso!")
     
 def listar_contas(contas):
-    for conta in contas:
+    for conta in ContaIterador(contas):
         print("-" *100)
         print(str(conta))
         
